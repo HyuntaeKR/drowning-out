@@ -9,10 +9,17 @@ from ternary_calculate import TernaryCalculate as tc
 
 
 class AntisolventCalculate:
-    def __init__(self) -> None:
+    def __init__(self, system: tc) -> None:
         """
         Class calculating the properties of a ternary drowning-out crystallization system.
-        Moreover, validates the antisolvent's effectivenss by calculating the solubility difference.
+        Moreover, validates the antisolvent's effectivenss by calculating the
+        solubility difference with respect to the amount of antisolvent added.
+
+        Parameters
+        ----------
+        system: TernaryCalculate
+            The ternary system with solute, solvent, antisolvent physical properties and
+            cosmo files.
         """
         self._calc_basis_mol = 1  # Basis of calculation - 1 mol
 
