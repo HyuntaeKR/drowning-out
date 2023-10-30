@@ -36,6 +36,41 @@ def init_mole_frac(ternary_data: np.ndarray) -> np.ndarray:
     return init_mol
 
 
+def calc_ratios(ternary_data: np.ndarray) -> dict:
+    """
+    Calculates the capacity ratio and antisolvent ratio based on the cosmo calculation.
+    Capacity ratio is mole fraction of solute divided by that of solvent.
+    Antisolvent ratio is mole fraction of antisolvent divided by that of solvent.
+
+    Paramters
+    ---------
+    ternary_data: np.ndarray
+        Array with the ternary phase mole fraction.
+        Has shape of (ngrid, 3)
+
+    Returns
+    -------
+    dict
+        Keys of [capacity ratio, antisolvent ratio].
+        Corresponding values are arrays of shape (ngrid, 1) with the ratio values.
+    """
+    capacity_ratio = np.zeros(np.shape(ternary_data)[0])  # (ngrid, 1)
+    # First and last elements are omitted due to 'division by zero'
+    capacity_ratio[1:-1] = ternary_data[1:-1, 0] / ternary_data[1:-1, 1]
+    # Fill NaN values for first and last ratios
+    capacity_ratio[0] = np.nan
+    capacity_ratio[-1] = np.nan
+
+    antisolv_ratio = np.zeros(np.shape(ternary_data)[0])
+    antisolv_ratio[1:-1] = ternary_data[1:-1, 2] / ternary_data[1:-1, 1]
+    antisolv_ratio[0] = np.nan
+    antisolv_ratio[-1] = np.nan
+
+    result = {"capacity ratio": capacity_ratio, "antisolvent ratio": antisolv_ratio}
+
+    return result
+
+
 class AntisolventCalculate:
     def __init__(self, system: tc, **kwarg) -> None:
         """
