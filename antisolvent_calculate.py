@@ -137,6 +137,7 @@ class AntisolventCalculate:
         ----
         See TernaryCalculate.calculate for kwarg info.
         """
+        self.system = system
         self._calc_basis_mol = 1  # Basis of calculation - 1 mol
 
         print("Initializing system...")
@@ -185,3 +186,32 @@ class AntisolventCalculate:
             return data
         else:
             raise "Wrong data format!"
+
+    def plot_antisolv(self) -> plt.figure:
+        """
+        Plots the solubility difference with respect to the amount of
+        antisolvent added.
+        """
+        data = self.get_data()
+        add_antisolv_mole = data["add_antisolv_mole"]
+        precip_mole = data["precip_mole"]
+        fig = plt.figure(
+            add_antisolv_mole,
+            precip_mole,
+            label=f"antisolvent: {self.system.mole_name[2]}",
+        )
+        plt.hlines(0, 0, 100, colors="black", linestyles="dashed")
+        plt.title(
+            f"solute: {self.system.mole_name[0]}, solvent: {self.system.mole_name[1]}"
+        )
+        plt.ylim(
+            [
+                -self.calc_basis_mole * self.init_frac[0],
+                self.calc_basis_mole * self.init_frac[0],
+            ]
+        )
+        plt.xlabel("Antisolvent added [mol]")
+        plt.ylabel("Solubility difference")
+        plt.legend()
+
+        return fig
