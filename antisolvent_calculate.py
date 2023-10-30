@@ -178,10 +178,10 @@ class AntisolventCalculate:
         if format == None:
             return data
         elif format == "csv":
-            data.to_csv("antisolvent_screening")
+            data.to_csv("antisolvent_screening.csv")
             return data
         elif format == "excel":
-            data.to_excel("antisolvent_screening")
+            data.to_excel("antisolvent_screening.xlsx")
             return data
         else:
             raise "Wrong data format!"
