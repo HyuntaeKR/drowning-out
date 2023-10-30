@@ -24,11 +24,11 @@ class AntisolventCalculate:
         system = tc()
         return system
 
-    def _calc_ternary_data(
-        self, system: tc, to_df: bool = False, **kwarg
-    ) -> np.ndarray:
+    def calc_ternary_data(self, system: tc, to_df: bool = False, **kwarg) -> np.ndarray:
         """
-        Calculates the ternary data for the given system.
+        Calculates the ternary data for the given system and initializes the
+        system by setting the data as an attribute.
+
 
         Paramters
         =========
@@ -53,8 +53,7 @@ class AntisolventCalculate:
             ngrid=kwarg.get("ngrid", 21), trace=kwarg.get("trace", True)
         )
 
-        # self.ternary_data = ternary_data
-        # SHOULD I INITIALIZE THE SYSTEM?
+        self.ternary_data = ternary_data
 
         if to_df:
             ternary_data = pandas.DataFrame(
@@ -70,8 +69,7 @@ class AntisolventCalculate:
 
     def init_mole_frac(self, to_df: bool = False) -> np.ndarray:
         """
-        Initializes the system by generating ternary calculation data and
-        returns the inital composition of the system.
+        Returns the inital composition of the system.
         Initially, the system has only the solute and solvent.
 
         Paramters
