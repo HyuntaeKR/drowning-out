@@ -23,14 +23,6 @@ class AntisolventCalculate:
         """
         self._calc_basis_mol = 1  # Basis of calculation - 1 mol
 
-    def create_system(self) -> tc:
-        """
-        Creates a system based on the class TernaryCalculate.
-        Check the TernaryCalculate script for more info.
-        """
-        system = tc()
-        return system
-
     def calc_ternary_data(self, system: tc, to_df: bool = False, **kwarg) -> np.ndarray:
         """
         Calculates the ternary data for the given system and initializes the
