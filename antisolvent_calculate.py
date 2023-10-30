@@ -23,15 +23,15 @@ def init_mole_frac(ternary_data: np.ndarray) -> np.ndarray:
     ndarray: shape=(1, 3)
         Array with inital mole fractions.
     """
-    init_fraction = ternary_data[0, :]
+    init_frac = ternary_data[0, :]
 
     # Code that makes the initial mole fraction into a DataFrame
     # if to_df:
-    #     init_fraction = pandas.DataFrame(
-    #         init_fraction, index=["solute init", "solvent init", "antisolvent init"]
+    #     init_frac = pandas.DataFrame(
+    #         init_frac, index=["solute init", "solvent init", "antisolvent init"]
     #     )
 
-    return init_fraction
+    return init_frac
 
 
 def calc_ratios(ternary_data: np.ndarray) -> dict:
@@ -139,8 +139,49 @@ class AntisolventCalculate:
         """
         self._calc_basis_mol = 1  # Basis of calculation - 1 mol
 
+        print("Initializing system...")
+
         ternary_data = system.calculate(
             ngrid=kwarg.get("ngrid", 101), trace=kwarg.get("trace", True)
         )  # ternary_data has shape of (ngrid, 3)
 
         self.ternary_data = ternary_data
+        # Get inital mole fraction
+        self.init_frac = init_mole_frac(self.ternary_data)
+
+        print("Initialize complete!")
+
+    def get_data(self, export: str = None) -> pandas.DataFrame:
+        """
+        Get the data needed for antisolvent screening as a DataFrame.
+
+        Parameters
+        ----------
+        format: str, optional
+            {"csv", "excel"}.
+            Choose the format to export the data.
+            Default is set to None.
+
+        Returns
+        -------
+        DataFrame
+            DataFrame with the antisolvent addition data.
+        """
+        ratios = calc_ratios(self.ternary_data)
+        moles = calc_moles(self.init_frac, ratios)
+
+        ratios = pandas.DataFrame(ratios)
+        moles = pandas.DataFrame(moles)
+
+        data = pandas.concat([ratios, moles], axis=1)
+
+        if format == None:
+            return data
+        elif format == "csv":
+            data.to_csv("antisolvent_screening")
+            return data
+        elif format == "excel":
+            data.to_excel("antisolvent_screening")
+            return data
+        else:
+            raise "Wrong data format!"
