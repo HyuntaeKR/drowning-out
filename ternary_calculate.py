@@ -1,5 +1,4 @@
 import numpy as np
-from numpy.typing import ArrayLike
 import pandas
 import matplotlib.pyplot as plt
 import ternary
