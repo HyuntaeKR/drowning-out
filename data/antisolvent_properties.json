@@ -1,0 +1,57 @@
+{
+    "antisolvent1": {
+        "temp_melt": 178.15,
+        "enth_fus": 6636,
+        "file": "./cosmo_file/UD132.cosmo",
+        "name": "TOLUENE"
+    },
+
+    "antisolvent2": {
+        "temp_melt": 298.7,
+        "enth_fus": 11720,
+        "file": "./cosmo_file/UD69.cosmo",
+        "name": "ACETIC_ACID"
+    },
+
+    "antisolvent3": {
+        "temp_melt": 177.8,
+        "enth_fus": 13080,
+        "file": "./cosmo_file/UD74.cosmo",
+        "name": "N-HEXANE"
+    },
+
+    "antisolvent4": {
+        "temp_melt": 279.8,
+        "enth_fus": 2680,
+        "file": "./cosmo_file/UD44.cosmo",
+        "name": "CYCLOHEXANE"
+    },
+
+    "antisolvent5": {
+        "temp_melt": 175.3,
+        "enth_fus": 3180,
+        "file": "./cosmo_file/UD89.cosmo",
+        "name": "METHANOL"
+    },
+
+    "antisolvent6": {
+        "temp_melt": 158.8,
+        "enth_fus": 4640,
+        "file": "./cosmo_file/UD10.cosmo",
+        "name": "ETHANOL"
+    },
+
+    "antisolvent7": {
+        "temp_melt": 229.3,
+        "enth_fus": 8170,
+        "file": "./cosmo_file/UD3.cosmo",
+        "name": "ACETONITRILE"
+    },
+
+    "antisolvent8": {
+        "temp_melt": 176.6,
+        "enth_fus": 5720,
+        "file": "./cosmo_file/UD4.cosmo",
+        "name": "ACETONE"
+    }
+}
