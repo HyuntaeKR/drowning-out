@@ -7,7 +7,7 @@ from cosmosac2 import COSMOMolecule, COSMOSAC
 from ternary_calculate import TernaryCalculate as tc
 
 
-def init_mole_frac(ternary_data: np.ndarray) -> np.ndarray:
+def _init_mole_frac(ternary_data: np.ndarray) -> np.ndarray:
     """
     Returns the inital composition of the system.
     Initially, the system has only the solute and solvent.
@@ -33,7 +33,7 @@ def init_mole_frac(ternary_data: np.ndarray) -> np.ndarray:
     return init_frac
 
 
-def calc_ratios(ternary_data: np.ndarray) -> dict:
+def _calc_ratios(ternary_data: np.ndarray) -> dict:
     """
     Calculates the capacity ratio and antisolvent ratio based on the cosmo calculation.
     Capacity ratio is mole fraction of solute divided by that of solvent.
@@ -67,7 +67,7 @@ def calc_ratios(ternary_data: np.ndarray) -> dict:
     return ratios
 
 
-def calc_moles(init_frac: np.ndarray, ratios: dict) -> dict:
+def _calc_moles(init_frac: np.ndarray, ratios: dict) -> dict:
     """
     Calculate the mole values needed for antisolvent screening.
     Includes mole of antisolvent to add experimentally,
