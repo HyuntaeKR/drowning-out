@@ -1,0 +1,12 @@
+{
+    "antisolvent1": {
+        "temp_melt": 0,
+        "enth_fus": 0,
+        "file": "str",
+        "name": "str"
+    },
+
+    "antisolvent2":{
+        
+    }
+}
