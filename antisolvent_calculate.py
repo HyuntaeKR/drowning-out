@@ -198,7 +198,8 @@ class AntisolventCalculate:
         data = self.get_data()
         add_antisolv_mole = data["add_antisolv_mole"]
         precip_mole = data["precip_mole"]
-        fig = plt.figure(
+        fig = plt.figure()
+        plt.plot(
             add_antisolv_mole,
             precip_mole,
             label=f"antisolvent: {self.system.mole_name[2]}",
