@@ -147,7 +147,7 @@ class AntisolventCalculate:
 
         self.ternary_data = ternary_data
         # Get inital mole fraction
-        self.init_frac = init_mole_frac(self.ternary_data)
+        self.init_frac = _init_mole_frac(self.ternary_data)
 
         print("Initialize complete!")
 
@@ -167,8 +167,8 @@ class AntisolventCalculate:
         DataFrame
             DataFrame with the antisolvent addition data.
         """
-        ratios = calc_ratios(self.ternary_data)
-        moles = calc_moles(self.init_frac, ratios)
+        ratios = _calc_ratios(self.ternary_data)
+        moles = _calc_moles(self.init_frac, ratios)
 
         ratios = pandas.DataFrame(ratios)
         moles = pandas.DataFrame(moles)
