@@ -113,7 +113,7 @@ def _calc_moles(init_frac: np.ndarray, ratios: dict) -> dict:
     capacity_mole[1:-1] = calc_basis_mole * init_frac[1] * capacity_ratio[1:-1]
 
     precip_mole = array_format
-    precip_mole[1:-1] = calc_basis_mole * init_frac[0] - capacity_mole
+    precip_mole[1:-1] = calc_basis_mole * init_frac[0] - capacity_mole[1:-1]
 
     moles = {
         "add_antisolv_mole": add_antisolv_mole,
@@ -172,8 +172,8 @@ class AntisolventCalculate:
         DataFrame
             DataFrame with the antisolvent addition data.
         """
-        ratios = _calc_ratios(self.ternary_data)
-        moles = _calc_moles(self.init_frac, ratios)
+        ratios = _calc_ratios(self.ternary_data).ravel()
+        moles = _calc_moles(self.init_frac, ratios).ravel()
 
         ratios = pandas.DataFrame(ratios)
         moles = pandas.DataFrame(moles)
