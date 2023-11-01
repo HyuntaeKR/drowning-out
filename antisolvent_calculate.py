@@ -50,15 +50,19 @@ def _calc_ratios(ternary_data: np.ndarray) -> dict:
         Keys of [capacity ratio, antisolvent ratio].
         Corresponding values are arrays of shape (ngrid, 1) with the ratio values.
     """
-    capacity_ratio = np.zeros(np.shape(ternary_data)[0])  # (ngrid, 1)
+    capacity_ratio = np.zeros((np.shape(ternary_data)[0], 1))  # (ngrid, 1)
     # First and last elements are omitted due to 'division by zero'
-    capacity_ratio[1:-1] = ternary_data[1:-1, 0] / ternary_data[1:-1, 1]
+    capacity_ratio[1:-1] = ternary_data[1:-1, 0].reshape(-1, 1) / ternary_data[
+        1:-1, 1
+    ].reshape(-1, 1)
     # Fill NaN values for first and last ratios
     capacity_ratio[0] = np.nan
     capacity_ratio[-1] = np.nan
 
-    antisolv_ratio = np.zeros(np.shape(ternary_data)[0])
-    antisolv_ratio[1:-1] = ternary_data[1:-1, 2] / ternary_data[1:-1, 1]
+    antisolv_ratio = np.zeros((np.shape(ternary_data)[0], 1))  # (ngrid, 1)
+    antisolv_ratio[1:-1] = ternary_data[1:-1, 2].reshape(-1, 1) / ternary_data[
+        1:-1, 1
+    ].reshape(-1, 1)
     antisolv_ratio[0] = np.nan
     antisolv_ratio[-1] = np.nan
 
@@ -94,18 +98,19 @@ def _calc_moles(init_frac: np.ndarray, ratios: dict) -> dict:
     calc_basis_mole = 1
 
     # Unpack ratios
-    capacity_ratio, antisolv_ratio = ratios
+    capacity_ratio = ratios["capacity_ratio"]
+    antisolv_ratio = ratios["antisolv_ratio"]
 
     # Create format for dict value arrays
-    array_format = np.zeros(len(ratios["capacity ratio"]))
+    array_format = np.zeros((len(ratios["capacity_ratio"]), 1))  # (ngrid, 1)
     array_format[0] = np.nan
     array_format[-1] = np.nan
 
     add_antisolv_mole = array_format
-    add_antisolv_mole[1:-1] = calc_basis_mole * init_frac[1] * antisolv_ratio
+    add_antisolv_mole[1:-1] = calc_basis_mole * init_frac[1] * antisolv_ratio[1:-1]
 
     capacity_mole = array_format
-    capacity_mole[1:-1] = calc_basis_mole * init_frac[1] * capacity_ratio
+    capacity_mole[1:-1] = calc_basis_mole * init_frac[1] * capacity_ratio[1:-1]
 
     precip_mole = array_format
     precip_mole[1:-1] = calc_basis_mole * init_frac[0] - capacity_mole
