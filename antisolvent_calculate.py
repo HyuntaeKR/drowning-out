@@ -210,8 +210,8 @@ class AntisolventCalculate:
         )
         plt.ylim(
             [
-                -self.calc_basis_mole * self.init_frac[0],
-                self.calc_basis_mole * self.init_frac[0],
+                -self._calc_basis_mole * self.init_frac[0],
+                self._calc_basis_mole * self.init_frac[0],
             ]
         )
         plt.xlabel("Antisolvent added [mol]")
