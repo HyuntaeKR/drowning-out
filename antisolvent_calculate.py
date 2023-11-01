@@ -48,21 +48,17 @@ def _calc_ratios(ternary_data: np.ndarray) -> dict:
     -------
     dict
         Keys of [capacity ratio, antisolvent ratio].
-        Corresponding values are arrays of shape (ngrid, 1) with the ratio values.
+        Corresponding values are arrays of shape (ngrid,) with the ratio values.
     """
-    capacity_ratio = np.zeros((np.shape(ternary_data)[0], 1))  # (ngrid, 1)
+    capacity_ratio = np.zeros(np.shape(ternary_data)[0])  # (ngrid,)
     # First and last elements are omitted due to 'division by zero'
-    capacity_ratio[1:-1] = ternary_data[1:-1, 0].reshape(-1, 1) / ternary_data[
-        1:-1, 1
-    ].reshape(-1, 1)
+    capacity_ratio[1:-1] = ternary_data[1:-1, 0] / ternary_data[1:-1, 1]
     # Fill NaN values for first and last ratios
     capacity_ratio[0] = np.nan
     capacity_ratio[-1] = np.nan
 
-    antisolv_ratio = np.zeros((np.shape(ternary_data)[0], 1))  # (ngrid, 1)
-    antisolv_ratio[1:-1] = ternary_data[1:-1, 2].reshape(-1, 1) / ternary_data[
-        1:-1, 1
-    ].reshape(-1, 1)
+    antisolv_ratio = np.zeros(np.shape(ternary_data)[0])  # (ngrid,)
+    antisolv_ratio[1:-1] = ternary_data[1:-1, 2] / ternary_data[1:-1, 1]
     antisolv_ratio[0] = np.nan
     antisolv_ratio[-1] = np.nan
 
@@ -85,14 +81,14 @@ def _calc_moles(init_frac: np.ndarray, ratios: dict) -> dict:
 
     ratios: dict
         Keys of [capacity_ratio, antisolv_ratio].
-        Corresponding values are arrays of shape (ngrid, 1)
+        Corresponding values are arrays of shape (ngrid,)
         with the ratio values.
 
     Returns
     -------
     dict
         Keys of [add_antisov_mole, capacity_mole, precip_mole].
-        Values are arrays of shape=(ngrid, 1)
+        Values are arrays of shape=(ngrid,)
     """
     # Set basis of calculation
     calc_basis_mole = 1
@@ -102,7 +98,7 @@ def _calc_moles(init_frac: np.ndarray, ratios: dict) -> dict:
     antisolv_ratio = ratios["antisolv_ratio"]
 
     # Create format for dict value arrays
-    array_format = np.zeros((len(ratios["capacity_ratio"]), 1))  # (ngrid, 1)
+    array_format = np.zeros(len(ratios["capacity_ratio"]))  # (ngrid,)
     array_format[0] = np.nan
     array_format[-1] = np.nan
 
