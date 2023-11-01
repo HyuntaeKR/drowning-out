@@ -152,7 +152,7 @@ class AntisolventCalculate:
 
         print("Initialize complete!")
 
-    def get_data(self, export: str = None) -> pandas.DataFrame:
+    def get_data(self, export: str = None, file_name: str = None) -> pandas.DataFrame:
         """
         Get the data needed for antisolvent screening as a DataFrame.
 
@@ -163,13 +163,16 @@ class AntisolventCalculate:
             Choose the format to export the data.
             Default is set to None.
 
+        file_name: str, optional
+            The file name for exporting data.
+
         Returns
         -------
         DataFrame
             DataFrame with the antisolvent addition data.
         """
-        ratios = _calc_ratios(self.ternary_data).ravel()
-        moles = _calc_moles(self.init_frac, ratios).ravel()
+        ratios = _calc_ratios(self.ternary_data)
+        moles = _calc_moles(self.init_frac, ratios)
 
         ratios = pandas.DataFrame(ratios)
         moles = pandas.DataFrame(moles)
@@ -179,13 +182,13 @@ class AntisolventCalculate:
         if format == None:
             return data
         elif format == "csv":
-            data.to_csv("antisolvent_screening.csv")
+            data.to_csv(file_name)
             return data
         elif format == "excel":
-            data.to_excel("antisolvent_screening.xlsx")
+            data.to_excel(file_name)
             return data
         else:
-            raise "Wrong data format!"
+            raise Exception("Wrong data format!")
 
     def plot_antisolv(self) -> plt.figure:
         """
