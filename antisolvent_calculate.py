@@ -48,21 +48,17 @@ def _calc_ratios(ternary_data: np.ndarray) -> dict:
     -------
     dict
         Keys of [capacity ratio, antisolvent ratio].
-        Corresponding values are arrays of shape (ngrid, 1) with the ratio values.
+        Corresponding values are arrays of shape (ngrid,) with the ratio values.
     """
-    capacity_ratio = np.zeros((np.shape(ternary_data)[0], 1))  # (ngrid, 1)
+    capacity_ratio = np.zeros(np.shape(ternary_data)[0])  # (ngrid,)
     # First and last elements are omitted due to 'division by zero'
-    capacity_ratio[1:-1] = ternary_data[1:-1, 0].reshape(-1, 1) / ternary_data[
-        1:-1, 1
-    ].reshape(-1, 1)
+    capacity_ratio[1:-1] = ternary_data[1:-1, 0] / ternary_data[1:-1, 1]
     # Fill NaN values for first and last ratios
     capacity_ratio[0] = np.nan
     capacity_ratio[-1] = np.nan
 
-    antisolv_ratio = np.zeros((np.shape(ternary_data)[0], 1))  # (ngrid, 1)
-    antisolv_ratio[1:-1] = ternary_data[1:-1, 2].reshape(-1, 1) / ternary_data[
-        1:-1, 1
-    ].reshape(-1, 1)
+    antisolv_ratio = np.zeros(np.shape(ternary_data)[0])  # (ngrid,)
+    antisolv_ratio[1:-1] = ternary_data[1:-1, 2] / ternary_data[1:-1, 1]
     antisolv_ratio[0] = np.nan
     antisolv_ratio[-1] = np.nan
 
@@ -85,14 +81,14 @@ def _calc_moles(init_frac: np.ndarray, ratios: dict) -> dict:
 
     ratios: dict
         Keys of [capacity_ratio, antisolv_ratio].
-        Corresponding values are arrays of shape (ngrid, 1)
+        Corresponding values are arrays of shape (ngrid,)
         with the ratio values.
 
     Returns
     -------
     dict
         Keys of [add_antisov_mole, capacity_mole, precip_mole].
-        Values are arrays of shape=(ngrid, 1)
+        Values are arrays of shape=(ngrid,)
     """
     # Set basis of calculation
     calc_basis_mole = 1
@@ -102,7 +98,7 @@ def _calc_moles(init_frac: np.ndarray, ratios: dict) -> dict:
     antisolv_ratio = ratios["antisolv_ratio"]
 
     # Create format for dict value arrays
-    array_format = np.zeros((len(ratios["capacity_ratio"]), 1))  # (ngrid, 1)
+    array_format = np.zeros(len(ratios["capacity_ratio"]))  # (ngrid,)
     array_format[0] = np.nan
     array_format[-1] = np.nan
 
@@ -156,40 +152,43 @@ class AntisolventCalculate:
 
         print("Initialize complete!")
 
-    def get_data(self, export: str = None) -> pandas.DataFrame:
+    def get_data(self, export: str = None, file_name: str = None) -> pandas.DataFrame:
         """
         Get the data needed for antisolvent screening as a DataFrame.
 
         Parameters
         ----------
-        format: str, optional
+        export: str, optional
             {"csv", "excel"}.
             Choose the format to export the data.
             Default is set to None.
+
+        file_name: str, optional
+            The file name for exporting data.
 
         Returns
         -------
         DataFrame
             DataFrame with the antisolvent addition data.
         """
-        ratios = _calc_ratios(self.ternary_data).ravel()
-        moles = _calc_moles(self.init_frac, ratios).ravel()
+        ratios = _calc_ratios(self.ternary_data)
+        moles = _calc_moles(self.init_frac, ratios)
 
         ratios = pandas.DataFrame(ratios)
         moles = pandas.DataFrame(moles)
 
         data = pandas.concat([ratios, moles], axis=1)
 
-        if format == None:
+        if export == None:
             return data
-        elif format == "csv":
-            data.to_csv("antisolvent_screening.csv")
+        elif export == "csv":
+            data.to_csv(file_name)
             return data
-        elif format == "excel":
-            data.to_excel("antisolvent_screening.xlsx")
+        elif export == "excel":
+            data.to_excel(file_name)
             return data
         else:
-            raise "Wrong data format!"
+            raise Exception("Wrong data format!")
 
     def plot_antisolv(self) -> plt.figure:
         """
@@ -199,7 +198,8 @@ class AntisolventCalculate:
         data = self.get_data()
         add_antisolv_mole = data["add_antisolv_mole"]
         precip_mole = data["precip_mole"]
-        fig = plt.figure(
+        fig = plt.figure()
+        plt.plot(
             add_antisolv_mole,
             precip_mole,
             label=f"antisolvent: {self.system.mole_name[2]}",
@@ -210,8 +210,8 @@ class AntisolventCalculate:
         )
         plt.ylim(
             [
-                -self.calc_basis_mole * self.init_frac[0],
-                self.calc_basis_mole * self.init_frac[0],
+                -self._calc_basis_mole * self.init_frac[0],
+                self._calc_basis_mole * self.init_frac[0],
             ]
         )
         plt.xlabel("Antisolvent added [mol]")
