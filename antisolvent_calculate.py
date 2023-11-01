@@ -158,7 +158,7 @@ class AntisolventCalculate:
 
         Parameters
         ----------
-        format: str, optional
+        export: str, optional
             {"csv", "excel"}.
             Choose the format to export the data.
             Default is set to None.
@@ -179,12 +179,12 @@ class AntisolventCalculate:
 
         data = pandas.concat([ratios, moles], axis=1)
 
-        if format == None:
+        if export == None:
             return data
-        elif format == "csv":
+        elif export == "csv":
             data.to_csv(file_name)
             return data
-        elif format == "excel":
+        elif export == "excel":
             data.to_excel(file_name)
             return data
         else:
