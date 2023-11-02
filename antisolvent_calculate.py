@@ -67,7 +67,9 @@ def _calc_ratios(ternary_data: np.ndarray) -> dict:
     return ratios
 
 
-def _calc_moles(init_frac: np.ndarray, ratios: dict) -> dict:
+def _calc_moles(
+    init_frac: np.ndarray, ratios: dict, calc_basis_mole: float = 1
+) -> dict:
     """
     Calculate the mole values needed for antisolvent screening.
     Includes mole of antisolvent to add experimentally,
@@ -84,30 +86,32 @@ def _calc_moles(init_frac: np.ndarray, ratios: dict) -> dict:
         Corresponding values are arrays of shape (ngrid,)
         with the ratio values.
 
+    calc_basis_mole: float, optional
+        Basis of calculation in unit if mole.
+        Default value is set to 1 mole.
+
     Returns
     -------
     dict
         Keys of [add_antisov_mole, capacity_mole, precip_mole].
         Values are arrays of shape=(ngrid,)
     """
-    # Set basis of calculation
-    calc_basis_mole = 1
 
     # Unpack ratios
     capacity_ratio = ratios["capacity_ratio"]
     antisolv_ratio = ratios["antisolv_ratio"]
 
-    add_antisolv_mole = np.zeros(len(ratios["capacity_ratio"])) # (ngrid,)
+    add_antisolv_mole = np.zeros(len(ratios["capacity_ratio"]))  # (ngrid,)
     add_antisolv_mole[1:-1] = calc_basis_mole * init_frac[1] * antisolv_ratio[1:-1]
     add_antisolv_mole[0] = np.nan
     add_antisolv_mole[-1] = np.nan
 
-    capacity_mole = np.zeros(len(ratios["capacity_ratio"])) # (ngrid,)
+    capacity_mole = np.zeros(len(ratios["capacity_ratio"]))  # (ngrid,)
     capacity_mole[1:-1] = calc_basis_mole * init_frac[1] * capacity_ratio[1:-1]
     capacity_mole[0] = np.nan
     capacity_mole[-1] = np.nan
 
-    precip_mole = np.zeros(len(ratios["capacity_ratio"])) # (ngrid,)
+    precip_mole = np.zeros(len(ratios["capacity_ratio"]))  # (ngrid,)
     precip_mole[1:-1] = calc_basis_mole * init_frac[0] - capacity_mole[1:-1]
     precip_mole[0] = np.nan
     precip_mole[-1] = np.nan
@@ -139,12 +143,15 @@ class AntisolventCalculate:
         See TernaryCalculate.calculate for kwarg info.
         """
         self.system = system
-        self._calc_basis_mole = 1  # Basis of calculation - 1 mol
+        self._calc_basis_mole = 1  # Basis of calculation: 1 mol
 
+        print(
+            f"System: {system.mole_name[0]}-{system.mole_name[1]}-{system.mole_name[2]}"
+        )
         print("Initializing system...")
 
         ternary_data = system.calculate(
-            ngrid=kwarg.get("ngrid", 101), trace=kwarg.get("trace", True)
+            ngrid=kwarg.get("ngrid", 101), trace=kwarg.get("trace", False)
         )  # ternary_data has shape of (ngrid, 3)
 
         self.ternary_data = ternary_data
@@ -173,7 +180,9 @@ class AntisolventCalculate:
             DataFrame with the antisolvent addition data.
         """
         ratios = _calc_ratios(self.ternary_data)
-        moles = _calc_moles(self.init_frac, ratios)
+        moles = _calc_moles(
+            self.init_frac, ratios, calc_basis_mole=self._calc_basis_mole
+        )
 
         ratios = pandas.DataFrame(ratios)
         moles = pandas.DataFrame(moles)
