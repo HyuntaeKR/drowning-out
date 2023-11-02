@@ -247,9 +247,14 @@ class TernaryCalculate:
 
         return ternary_data
 
-    def plot_ternary(self, ternary_data: np.ndarray):
+    def plot_ternary(self, ternary_data: np.ndarray) -> plt.figure:
         """
         Plots the ternary data.
+
+        Returns
+        -------
+        figure
+            Plot of the ternary diagram.
         """
         figure, tax = ternary.figure(scale=1.0)
         tax.boundary()
@@ -265,7 +270,8 @@ class TernaryCalculate:
         tax.bottom_axis_label(f"{self.mole_name[2]} - {self.mole_name[0]}")
         tax.ticks()
         tax.legend(loc="upper right")
-        tax.show()
+        
+        return figure
 
     """
     Comments

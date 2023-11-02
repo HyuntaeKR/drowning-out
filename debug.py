@@ -37,4 +37,4 @@ system.add_solvent(**solvent)
 system.add_antisolvent(**antisolvent)
 antisolv_calculator = ac(system, trace=False)
 
-system.plot_ternary(antisolv_calculator.ternary_data)
+ternary_fig = system.plot_ternary(antisolv_calculator.ternary_data)
