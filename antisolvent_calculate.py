@@ -100,17 +100,17 @@ def _calc_moles(init_frac: np.ndarray, ratios: dict) -> dict:
     add_antisolv_mole = np.zeros(len(ratios["capacity_ratio"])) # (ngrid,)
     add_antisolv_mole[1:-1] = calc_basis_mole * init_frac[1] * antisolv_ratio[1:-1]
     add_antisolv_mole[0] = np.nan
-    add_antisolv_mole[1] = np.nan
+    add_antisolv_mole[-1] = np.nan
 
     capacity_mole = np.zeros(len(ratios["capacity_ratio"])) # (ngrid,)
     capacity_mole[1:-1] = calc_basis_mole * init_frac[1] * capacity_ratio[1:-1]
     capacity_mole[0] = np.nan
-    capacity_mole[1] = np.nan
+    capacity_mole[-1] = np.nan
 
     precip_mole = np.zeros(len(ratios["capacity_ratio"])) # (ngrid,)
     precip_mole[1:-1] = calc_basis_mole * init_frac[0] - capacity_mole[1:-1]
     precip_mole[0] = np.nan
-    precip_mole[1] = np.nan
+    precip_mole[-1] = np.nan
 
     moles = {
         "add_antisolv_mole": add_antisolv_mole,
