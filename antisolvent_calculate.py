@@ -138,7 +138,7 @@ class AntisolventCalculate:
         See TernaryCalculate.calculate for kwarg info.
         """
         self.system = system
-        self._calc_basis_mol = 1  # Basis of calculation - 1 mol
+        self._calc_basis_mole = 1  # Basis of calculation - 1 mol
 
         print("Initializing system...")
 
