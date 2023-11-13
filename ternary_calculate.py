@@ -212,6 +212,15 @@ class TernaryCalculate:
         self.mole_name[2] = name
         self.mole_file[2] = file
 
+    def clear_solvent(self):
+        """
+        Clears the solvent component.
+        """
+        self.temp_melt[1] = 0
+        self.enth_fus[1] = 0
+        self.mole_name[1] = "solvent"
+        self.mole_file[1] = "solvent_file"
+
     def clear_antisolvent(self):
         """
         Clears the antisolvent component.
@@ -270,7 +279,7 @@ class TernaryCalculate:
         tax.bottom_axis_label(f"{self.mole_name[2]} - {self.mole_name[0]}")
         tax.ticks()
         tax.legend(loc="upper right")
-        
+
         return figure
 
     """
