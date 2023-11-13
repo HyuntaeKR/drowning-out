@@ -1,0 +1,29 @@
+[
+    {
+        "name": "ETHANOL",
+        "temp_melt": 0,
+        "enth_fus": 0,
+        "file": "./cosmo_file/UD10.cosmo"
+    },
+    
+    {
+        "name": "ACETONE",
+        "temp_melt": 0,
+        "enth_fus": 0,
+        "file": "./cosmo_file/UD4.cosmo"
+    },
+
+    {
+        "name": "DIMETHYL_SULFOXIDE",
+        "temp_melt": 0,
+        "enth_fus": 0,
+        "file": "./cosmo_file/UD1676.cosmo"
+    },
+
+    {
+        "name": "n,n-dimethylformamide",
+        "temp_melt": 0,
+        "enth_fus": 0,
+        "file": "./cosmo_file/VT1037.cosmo"
+    }
+]
