@@ -15,8 +15,16 @@
 * The mole fraction of the solute is calculated iteratively based on the solid-liquid phase equation: $$ln(x_i\gamma_i)=\frac{-\Delta H_i^{fus}}{R}\left(\frac{1}{T}-\frac{1}{T_{m,i}}\right)$$
 * Calculation results can be plotted on a ternary diagram using <code>plot_ternary</code> method.
     * The method uses the <code>ternay</code> python library: [python-ternary](https://github.com/marcharper/python-ternary)
+
+<img src="./images/ternary_data_plot.png" alt="ternary plot">
+
 ### antisolvent_calculate
 * <code>antisolvent_calculate</code> is a module for screening effective antisolvents.
 * A system is defined and initiated from the <code>ternary_calculate</code> module.
 * Solubility of the solute component is obtained based on the SLE calculation. It is then subtracted from the total amount of solute in the system to get the amount of precipitated solute.
 * The calculation results can be plotted by <code>plot_antisolv</code> method to visualize the effectiveness of the antisolvent for the system.
+
+<div style="display: flex; justify-content: space-between;">
+    <img src="./images/antisolvent_screening_plot.png" alt="Alt text 1" style="width: 50%;">
+    <img src="./images/antisolvent_screening.png" alt="Alt text 2" style="width: 50%;">
+</div>
