@@ -196,7 +196,7 @@ class AntisolventCalculate:
             # the ternary data is added.
             ternary_data_export = pandas.DataFrame(
                 self.ternary_data,
-                index=[
+                columns=[
                     "solute mol fraction",
                     "solvent mol fraction",
                     "antisolvent mol fraction",
@@ -208,7 +208,7 @@ class AntisolventCalculate:
         elif export == "excel":
             ternary_data_export = pandas.DataFrame(
                 self.ternary_data,
-                index=[
+                columns=[
                     "solute mol fraction",
                     "solvent mol fraction",
                     "antisolvent mol fraction",
