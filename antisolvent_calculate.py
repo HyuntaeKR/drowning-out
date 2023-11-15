@@ -192,9 +192,29 @@ class AntisolventCalculate:
         if export == None:
             return data
         elif export == "csv":
+            # When exporting as a data file,
+            # the ternary data is added.
+            ternary_data_export = pandas.DataFrame(
+                self.ternary_data,
+                columns=[
+                    "solute mol fraction",
+                    "solvent mol fraction",
+                    "antisolvent mol fraction",
+                ],
+            )
+            data = pandas.concat([data, ternary_data_export], axis=1)
             data.to_csv(file_name)
             return data
         elif export == "excel":
+            ternary_data_export = pandas.DataFrame(
+                self.ternary_data,
+                columns=[
+                    "solute mol fraction",
+                    "solvent mol fraction",
+                    "antisolvent mol fraction",
+                ],
+            )
+            data = pandas.concat([data, ternary_data_export], axis=1)
             data.to_excel(file_name)
             return data
         else:
