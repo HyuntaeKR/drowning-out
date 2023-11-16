@@ -212,6 +212,15 @@ class TernaryCalculate:
         self.mole_name[2] = name
         self.mole_file[2] = file
 
+    def clear_solute(self):
+        """
+        Clears the solute component.
+        """
+        self.temp_melt[0] = 0
+        self.enth_fus[0] = 0
+        self.mole_name[0] = "solute"
+        self.mole_file[0] = "solute_file"
+
     def clear_solvent(self):
         """
         Clears the solvent component.

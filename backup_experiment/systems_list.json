@@ -5,7 +5,7 @@
         "antisolvent": [
             "TOLUENE",
             "ACETIC_ACID",
-            "HEXANE",
+            "N-HEXANE",
             "CYCLOHEXANE",
             "WATER",
             "METHANOL",
@@ -21,7 +21,7 @@
         "antisolvent": [
             "TOLUENE",
             "ACETIC_ACID",
-            "HEXANE",
+            "N-HEXANE",
             "CYCLOHEXANE",
             "WATER",
             "METHANOL",
@@ -37,7 +37,7 @@
         "antisolvent": [
             "TOLUENE",
             "ACETIC_ACID",
-            "HEXANE",
+            "N-HEXANE",
             "CYCLOHEXANE",
             "1-HEXENE",
             "WATER",
@@ -55,7 +55,7 @@
         "antisolvent": [
             "TOLUENE",
             "ACETIC_ACID",
-            "HEXANE",
+            "N-HEXANE",
             "CYCLOHEXANE",
             "WATER",
             "METHANOL",
