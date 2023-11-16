@@ -1,0 +1,67 @@
+[
+    {
+        "solute": "GLUTARIC_ACID",
+        "solvent": "1-BUTANOL",
+        "antisolvent": [
+            "TOLUENE",
+            "ACETIC_ACID",
+            "N-HEXANE",
+            "CYCLOHEXANE",
+            "WATER",
+            "METHANOL",
+            "ETHANOL",
+            "ACETONITRILE",
+            "ACETONE"
+        ]
+    },
+
+    {
+        "solute": "ADIPIC_ACID",
+        "solvent": "1-BUTANOL",
+        "antisolvent": [
+            "TOLUENE",
+            "ACETIC_ACID",
+            "N-HEXANE",
+            "CYCLOHEXANE",
+            "WATER",
+            "METHANOL",
+            "ETHANOL",
+            "ACETONITRILE",
+            "ACETONE"
+        ]
+    },
+
+    {
+        "solute": "SUCCINI_ ACID",
+        "solvent": "n,n-dimethylformamide",
+        "antisolvent": [
+            "TOLUENE",
+            "ACETIC_ACID",
+            "N-HEXANE",
+            "CYCLOHEXANE",
+            "1-HEXENE",
+            "WATER",
+            "METHANOL",
+            "ETHANOL",
+            "ACETONITRILE",
+            "ACETONE",
+            "1-BUTANOL"
+        ]
+    },
+
+    {
+        "solute": "BENZOIC_ACID",
+        "solvent": "1-BUTANOL",
+        "antisolvent": [
+            "TOLUENE",
+            "ACETIC_ACID",
+            "N-HEXANE",
+            "CYCLOHEXANE",
+            "WATER",
+            "METHANOL",
+            "ETHANOL",
+            "ACETONITRILE",
+            "ACETONE"
+        ]
+    }
+]
