@@ -16,7 +16,7 @@
 * Calculation results can be plotted on a ternary diagram using <code>plot_ternary</code> method.
     * The method uses the <code>ternay</code> python library: [python-ternary](https://github.com/marcharper/python-ternary)
 <p align="center">
-<img src="./images/ternary_data_plot.png" alt="ternary plot" style="width: 40%; height: 40%">
+<img src="./images/ternary_data_plot.png" alt="ternary plot" style="width: 60%; height: 60%">
 </p>
 
 ### antisolvent_calculate
@@ -26,5 +26,5 @@
 * The calculation results can be plotted by <code>plot_antisolv</code> method to visualize the effectiveness of the antisolvent for the system.
 
 <p align="center">
-<img src="./images/antisolvent_screening_plot.png" alt="Alt text 1" style="width: 40%"/> <img src="./images/antisolvent_screening.png" alt="Alt text 2" style="width: 40%">
+<img src="./images/antisolvent_screening_plot.png" alt="single plot" style="width: 40%"/> <img src="./images/antisolvent_screening.png" alt="multiple plots" style="width: 40%">
 </p>
