@@ -1,67 +1,67 @@
 [
     {
-        "solute": "glutaric acid",
-        "solvent": "1-butanol",
+        "solute": "GLUTARIC_ACID",
+        "solvent": "1-BUTANOL",
         "antisolvent": [
-            "toluene",
-            "acetic acid",
-            "hexane",
-            "cyclohexane",
-            "water",
-            "methanol",
-            "ethanol",
-            "acetonitrile",
-            "acetone"
+            "TOLUENE",
+            "ACETIC_ACID",
+            "HEXANE",
+            "CYCLOHEXANE",
+            "WATER",
+            "METHANOL",
+            "ETHANOL",
+            "ACETONITRILE",
+            "ACETONE"
         ]
     },
 
     {
-        "solute": "adipic acid",
-        "solvent": "1-butanol",
+        "solute": "ADIPIC_ACID",
+        "solvent": "1-BUTANOL",
         "antisolvent": [
-            "toluene",
-            "acetic acid",
-            "hexane",
-            "cyclohexane",
-            "water",
-            "methanol",
-            "ethanol",
-            "acetonitrile",
-            "acetone"
+            "TOLUENE",
+            "ACETIC_ACID",
+            "HEXANE",
+            "CYCLOHEXANE",
+            "WATER",
+            "METHANOL",
+            "ETHANOL",
+            "ACETONITRILE",
+            "ACETONE"
         ]
     },
 
     {
-        "solute": "succinic acid",
-        "solvent": "DMF",
+        "solute": "SUCCINI_ ACID",
+        "solvent": "n,n-dimethylformamide",
         "antisolvent": [
-            "toluene",
-            "acetic acid",
-            "hexane",
-            "cyclohexane",
-            "1-hexene",
-            "water",
-            "methanol",
-            "ethanol",
-            "acetonitrile",
-            "acetone",
-            "1-butanol"
+            "TOLUENE",
+            "ACETIC_ACID",
+            "HEXANE",
+            "CYCLOHEXANE",
+            "1-HEXENE",
+            "WATER",
+            "METHANOL",
+            "ETHANOL",
+            "ACETONITRILE",
+            "ACETONE",
+            "1-BUTANOL"
         ]
     },
 
     {
-        "solute": "benzoic acid",
-        "solvent": "1-butanol",
+        "solute": "BENZOIC_ACID",
+        "solvent": "1-BUTANOL",
         "antisolvent": [
-            "toluene",
-            "acetic acid",
-            "hexane",
-            "cyclohexane",
-            "water",
-            "methanol",
-            "ethanol",
-            "acetonitrile",
-            "acetone"
+            "TOLUENE",
+            "ACETIC_ACID",
+            "HEXANE",
+            "CYCLOHEXANE",
+            "WATER",
+            "METHANOL",
+            "ETHANOL",
+            "ACETONITRILE",
+            "ACETONE"
         ]
     }
 ]
