@@ -28,3 +28,5 @@
 <p align="center">
 <img src="./images/antisolvent_screening_plot.png" alt="single plot" width="400" height="300"/> <img src="./images/antisolvent_screening.png" alt="multiple plots" width="400" height="300">
 </p>
+
+* ***In the above image on the right, positive precipitation implies effective antisolvent, whereas negative precipitation imply ineffective antisolvent.***

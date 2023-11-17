@@ -1,10 +1,13 @@
 cosmo_file
 .DS_Store
 __pycache__
-drowning-out.code-workspace
 .vscode
+
 cosmosac2.py
+
 examples/data
 examples/data2
+
 backup_experiment/properties.json
 backup_experiment/data
+backup_experiment/plots

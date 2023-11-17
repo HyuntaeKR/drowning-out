@@ -32,7 +32,7 @@
     },
 
     {
-        "solute": "SUCCINI_ ACID",
+        "solute": "SUCCINIC_ACID",
         "solvent": "n,n-dimethylformamide",
         "antisolvent": [
             "TOLUENE",
