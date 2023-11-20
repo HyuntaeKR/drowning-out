@@ -6,7 +6,8 @@ __pycache__
 cosmosac2.py
 
 examples/data
-examples/data2
+
+thesis_project/data
 
 backup_experiment/properties.json
 backup_experiment/data
