@@ -209,9 +209,9 @@ class AntisolventCalculate:
             ternary_data_export = pandas.DataFrame(
                 self.ternary_data,
                 columns=[
-                    "solute mol fraction",
-                    "solvent mol fraction",
-                    "antisolvent mol fraction",
+                    "solute_mol_fraction",
+                    "solvent_mol_fraction",
+                    "antisolvent_mol_fraction",
                 ],
             )
             data = pandas.concat([data, ternary_data_export], axis=1)
