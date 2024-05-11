@@ -250,9 +250,31 @@ class TernaryCalculate:
 
         return cosmo
 
-    def calculate(self, ngrid: int = 21, trace: bool = True) -> np.ndarray:
+    def calculate(
+        self,
+        ngrid: int = 21,
+        trace: bool = True,
+        export: str = None,
+        file_name: str = None,
+    ) -> np.ndarray:
         """
         Calculates data points for given ternary system.
+
+        Parameters
+        ----------
+        ngrid: int
+            Number of grid points.
+
+        trace: bool
+            If set to true, prints out the calculated composition.
+            Default is set to True.
+
+        export: str, optional
+            If specified, exports the ternary data in the specified format.
+            Available formats are: {"csv"}
+
+        file_name: str, optional
+            The file name for exporting data.
         """
         ternary_data = _calc_sle_grid(
             ngrid=ngrid,
@@ -263,7 +285,21 @@ class TernaryCalculate:
             trace=trace,
         )
 
-        return ternary_data
+        if export is None:
+            return ternary_data
+        elif export == "csv":
+            ternary_data_export = pandas.DataFrame(
+                ternary_data,
+                columns=[
+                    "solute_mol_fraction",
+                    "solvent_mol_fraction",
+                    "antisolvent_mol_fraction",
+                ],
+            )
+            ternary_data_export.to_csv(file_name)
+            return ternary_data
+        else:
+            raise Exception("Unvalid data format")
 
     def plot_ternary(self, ternary_data: np.ndarray) -> plt.figure:
         """
